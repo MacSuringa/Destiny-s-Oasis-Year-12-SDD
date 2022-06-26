@@ -32,8 +32,8 @@ public class Enemy_Spawn : MonoBehaviour
             {
                 int randEnemy = Random.Range(0, enemyPrefabs.Length);
 
-                float min_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0f, -1f, Camera.main.nearClipPlane)).y;
-                float max_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, Camera.main.nearClipPlane)).y;
+                float min_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0f, Camera.main.nearClipPlane, -1f)).y;
+                float max_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0f, Camera.main.nearClipPlane, 1f)).y;
 
                 float min_enemyX = Camera.main.ViewportToWorldPoint(new Vector3(-1f, 0f, 0f)).x;
                 float max_enemyX = Camera.main.ViewportToWorldPoint(new Vector3(1f, 0f, 0f)).x;

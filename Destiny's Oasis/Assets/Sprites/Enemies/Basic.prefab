@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 247473431920213667}
   - component: {fileID: 4415357720341800507}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Basic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2471bf9a33a7c324e86000bf5a25eccf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthAmount: 10
+  healthAmount: 50
 --- !u!114 &4415357720341800507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,4 +172,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb22b8c9da225a34785e0b5ab8e9258a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 5
+  Damage: 10

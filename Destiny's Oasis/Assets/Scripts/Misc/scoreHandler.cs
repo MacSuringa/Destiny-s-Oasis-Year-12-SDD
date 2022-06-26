@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class scoreHandler : MonoBehaviour
 {
@@ -9,12 +8,12 @@ public class scoreHandler : MonoBehaviour
     private static float startTime;
     public float timeAmount;
 
-    private Text scoreText;
+    private TMP_Text scoreText;
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreText = GetComponent<Text>();
+        scoreText = GetComponent<TMP_Text>();
         killAmount = 0;
         startTime = Time.deltaTime;
     }
