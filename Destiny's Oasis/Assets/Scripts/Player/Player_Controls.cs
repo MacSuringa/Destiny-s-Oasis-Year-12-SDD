@@ -43,16 +43,20 @@ public class Player_Controls : MonoBehaviour
 
             //function for the attack
             Attack();
-
-            mousePos = MainCam.ScreenToWorldPoint(Input.mousePosition);
-            // gets the mouses position based on the location screen (what the camera sees)
-
-            UpdateTimer();
         }
+
+        mousePos = MainCam.ScreenToWorldPoint(Input.mousePosition);
+        // gets the mouses position based on the location screen (what the camera sees)
+
+        UpdateTimer();
     }
 
-    void FixedUpdate()
+    void Movement()
     {
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+        // Gets horizontal and vertical input, and adds them to the movement variable
+
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         // moves the player body based on the movement type, speed and time
 
@@ -64,16 +68,6 @@ public class Player_Controls : MonoBehaviour
 
         rb.rotation = angle;
         // rotates the player body based on said angle
-    }
-
-    void Movement()
-    {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-        // Gets horizontal and vertical input, and adds them to the movement variable
-
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-        // moves the player body based on the movement type, speed and time
     }
 
     void UpdateTimer()
