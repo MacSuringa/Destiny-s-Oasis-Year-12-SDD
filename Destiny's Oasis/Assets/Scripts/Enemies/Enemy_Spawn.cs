@@ -9,6 +9,7 @@ public class Enemy_Spawn : MonoBehaviour
 
     public float interval;
     private float timer = 0f;
+    private int intervalCount = 1;
 
     // Update is called once per frame
     void Update()
@@ -19,19 +20,30 @@ public class Enemy_Spawn : MonoBehaviour
         if(timer >= interval)
         {
             timer = 0f;
-            interval -= interval / 100;
-            int randEnemy = Random.Range(0, enemyPrefabs.Length);
+            interval -= interval / 10;
 
-            float min_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0f, -1f, Camera.main.nearClipPlane)).y;
-            float max_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, Camera.main.nearClipPlane)).y;
+            if (interval <= 0.5)
+            {
+                interval = 3f;
+                intervalCount += 1;
+            }
 
-            float min_enemyX = Camera.main.ViewportToWorldPoint(new Vector3(-1f, 0f, 0f)).x;
-            float max_enemyX = Camera.main.ViewportToWorldPoint(new Vector3(1f, 0f, 0f)).x;
+            for (int i = 1 ; i <= intervalCount; i++)
+            {
+                int randEnemy = Random.Range(0, enemyPrefabs.Length);
 
-            float spawn_x = Random.Range(min_enemyX, max_enemyX);
-            float spawn_y = Random.Range(min_enemyY, max_enemyY);
+                float min_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0f, -1f, Camera.main.nearClipPlane)).y;
+                float max_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0f, 1f, Camera.main.nearClipPlane)).y;
 
-            Instantiate(enemyPrefabs[randEnemy], (new Vector3(spawn_x, spawn_y, 0f)), transform.rotation);
+                float min_enemyX = Camera.main.ViewportToWorldPoint(new Vector3(-1f, 0f, 0f)).x;
+                float max_enemyX = Camera.main.ViewportToWorldPoint(new Vector3(1f, 0f, 0f)).x;
+
+                float spawn_x = Random.Range(min_enemyX, max_enemyX);
+                float spawn_y = Random.Range(min_enemyY, max_enemyY);
+
+                Instantiate(enemyPrefabs[randEnemy], (new Vector3(spawn_x, spawn_y, 0f)), transform.rotation);
+            }
+
         }
     }
 }
