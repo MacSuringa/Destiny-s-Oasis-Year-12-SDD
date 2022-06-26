@@ -9,27 +9,9 @@ public class AiFollow : MonoBehaviour
     private GameObject player;
     private float distance;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        var currentEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach (GameObject enemy in currentEnemies)
-        {
-            float currentDistance = Vector3.Distance(transform.position, enemy.transform.position);
-
-            if (currentDistance <= 1.5f)
-            {
-                Vector3 dist = transform.position - enemy.transform.position;
-                transform.position += dist * Time.deltaTime;
-            }
-        }
-
         player = GameObject.FindWithTag("Player");
 
         //gets distance between the player and the object

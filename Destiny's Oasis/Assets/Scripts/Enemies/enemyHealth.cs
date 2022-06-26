@@ -5,20 +5,15 @@ using UnityEngine.UI;
 
 public class enemyHealth : MonoBehaviour
 {
-    public float healthAmount = 100;
+    public float healthAmount = 10;
 
     private void Update()
     {
         if (healthAmount <= 0)
         {
             Destroy(gameObject);
+            scoreHandler.killCounter();
         }
-
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TakeDamage(20);
-        }
-
     }
 
     public void TakeDamage(float Damage)
