@@ -8,22 +8,28 @@ public class playerHealth : MonoBehaviour
     public Image healthBar;
     public float healthAmount = 100;
 
+    public GameObject gameOver;
+
     private void Update()
     {
         if (healthAmount <= 0)
         {
-            Application.Quit();
+            gameOver.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
+    // function to simulate taking damage from enemies, to be called by enemy classes
     public void TakeDamage(int Damage)
     {
         healthAmount -= Damage;
         healthBar.fillAmount = healthAmount / 100;
     }
 
-    public void Healing(float healPoints)
+    // class to simulate healing, to be called in levelling
+    public void Healing()
     {
+        float healPoints = healthAmount * 0.1f;
         healthAmount += healPoints;
         healthAmount = Mathf.Clamp(healthAmount, 0, 100);
 

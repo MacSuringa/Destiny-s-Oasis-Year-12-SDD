@@ -35,6 +35,7 @@ public class playerExperience : MonoBehaviour
         Experience = 0;
         playerLevel += 1;
         levelUpThreshold *= 1.1f;
+        gameObject.GetComponent<playerHealth>().Healing();
 
         levelUpScreen.SetActive(true);
         Time.timeScale = 0f;
