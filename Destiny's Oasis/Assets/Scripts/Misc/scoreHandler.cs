@@ -7,6 +7,7 @@ public class scoreHandler : MonoBehaviour
     public static int killAmount;
     private static float startTime;
     public float timeAmount;
+    public int playerLevel;
 
     private TMP_Text scoreText;
 
@@ -16,13 +17,16 @@ public class scoreHandler : MonoBehaviour
         scoreText = GetComponent<TMP_Text>();
         killAmount = 0;
         startTime = Time.deltaTime;
+        playerLevel = GameObject.FindGameObjectWithTag("Player").GetComponent<playerExperience>().playerLevel;
     }
 
     // Update is called once per frame
     void Update()
     {
         timeAmount = Time.time - startTime;
-        scoreText.text = "Kills  = " + killAmount + "\nTime Survived = " + (int)timeAmount + " Seconds";
+        playerLevel = GameObject.FindGameObjectWithTag("Player").GetComponent<playerExperience>().playerLevel;
+
+        scoreText.text = "Level = " + playerLevel + "\nKills  = " + killAmount + "\nTime Survived = " + (int)timeAmount + " Seconds";
     }
 
     public static void killCounter()

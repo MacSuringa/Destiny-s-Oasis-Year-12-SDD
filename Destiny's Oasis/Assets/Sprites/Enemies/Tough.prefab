@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 247473431920213667, guid: 9ab338e4c7af84a4b8e0e346ccffcc55, type: 3}
+      propertyPath: enemyXP
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 247473431920213667, guid: 9ab338e4c7af84a4b8e0e346ccffcc55, type: 3}
       propertyPath: healthAmount
       value: 150
       objectReference: {fileID: 0}

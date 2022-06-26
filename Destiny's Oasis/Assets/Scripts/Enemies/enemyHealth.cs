@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class enemyHealth : MonoBehaviour
 {
     public float healthAmount = 10;
+    public float enemyXP = 10;
 
     private void Update()
     {
@@ -13,6 +14,7 @@ public class enemyHealth : MonoBehaviour
         {
             Destroy(gameObject);
             scoreHandler.killCounter();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<playerExperience>().gainXP(enemyXP);
         }
     }
 

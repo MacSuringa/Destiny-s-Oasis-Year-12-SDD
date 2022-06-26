@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Controls : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 50f;
     // Gets a modifiable variable with a default value of 5
 
     public Rigidbody2D rb;
@@ -16,7 +16,7 @@ public class Player_Controls : MonoBehaviour
     public Camera MainCam;
     // Gets data from the camera
 
-    private int Damage = 100;
+    public int Damage = 100;
     // sets the amount of damage the player deals
 
     private bool isStunned = false;

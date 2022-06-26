@@ -8,6 +8,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 247473431920213667, guid: 9ab338e4c7af84a4b8e0e346ccffcc55, type: 3}
+      propertyPath: enemyXP
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 247473431920213667, guid: 9ab338e4c7af84a4b8e0e346ccffcc55, type: 3}
       propertyPath: healthAmount
       value: 75
       objectReference: {fileID: 0}
@@ -73,7 +77,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6021876195174260866, guid: 9ab338e4c7af84a4b8e0e346ccffcc55, type: 3}
       propertyPath: m_Name
-      value: Enemy 4
+      value: Player-Clone
       objectReference: {fileID: 0}
     - target: {fileID: 6021876195174260867, guid: 9ab338e4c7af84a4b8e0e346ccffcc55, type: 3}
       propertyPath: speed
