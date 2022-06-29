@@ -18,14 +18,15 @@ public class Enemy_Spawn : MonoBehaviour
     private int eventType;
 
     private float specialTimer = 0f;
-    private float specialInterval = 30f;
+    public float specialInterval = 30f;
     private bool colorChange = false;
 
-    private float specialDuration = 10f;
+    public float specialDuration = 10f;
     private float specialCountDown = 0f;
 
     private float eventSpawnRate = 1f;
     private float eventSpawnCooldown = 0f;
+    private int eventCount = 0;
 
     // Update is called once per frame
     void Update()
@@ -43,7 +44,7 @@ public class Enemy_Spawn : MonoBehaviour
         if(timer >= interval)
         {
             timer = 0f;
-            interval -= interval / 10;
+            interval -= interval / 60;
 
             if (interval <= 0.5)
             {
@@ -73,6 +74,8 @@ public class Enemy_Spawn : MonoBehaviour
                 tilemap.color = tileColor[eventType];
 
                 colorChange = true;
+
+                eventCount += 1;
             }
 
             specialCountDown += Time.deltaTime;
@@ -95,7 +98,8 @@ public class Enemy_Spawn : MonoBehaviour
             {
                 if (colorChange)
                 {
-                    spawnSystem(eventType);
+                    for (int i = 0; i <= eventCount; i++)
+                        spawnSystem(eventType);
 
                     eventSpawnCooldown = 0f;
                 }
@@ -106,14 +110,30 @@ public class Enemy_Spawn : MonoBehaviour
 
     private void spawnSystem(int enemy)
     {
-        float min_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0f, Camera.main.nearClipPlane, -1f)).y;
-        float max_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0f, Camera.main.nearClipPlane, 1f)).y;
+        float min_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0, -1f, 0)).y;
+        float max_enemyY = Camera.main.ViewportToWorldPoint(new Vector3(0, 2f, 0)).y;
 
         float min_enemyX = Camera.main.ViewportToWorldPoint(new Vector3(-1f, 0f, 0f)).x;
-        float max_enemyX = Camera.main.ViewportToWorldPoint(new Vector3(1f, 0f, 0f)).x;
+        float max_enemyX = Camera.main.ViewportToWorldPoint(new Vector3(2f, 0f, 0f)).x;
 
         float spawn_x = Random.Range(min_enemyX, max_enemyX);
         float spawn_y = Random.Range(min_enemyY, max_enemyY);
+        
+        if (spawn_x >= Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).x || spawn_x <= Camera.main.ViewportToWorldPoint(new Vector3(1, 0, 0)).x)
+        {
+            float Chance = Random.value;
+
+            if (Chance >= 0.5)
+            {
+                spawn_y = Random.Range(Camera.main.ViewportToWorldPoint(new Vector3(0, 1f, 0)).y, Camera.main.ViewportToWorldPoint(new Vector3(0f, 2f, 0)).y);
+            }
+
+            else
+            {
+                spawn_y = Random.Range(Camera.main.ViewportToWorldPoint(new Vector3(0, -1f, 0)).y, Camera.main.ViewportToWorldPoint(new Vector3(0, 0, 0)).y);
+            }
+
+        }
 
         Instantiate(enemyPrefabs[enemy], (new Vector3(spawn_x, spawn_y, 0f)), transform.rotation);
     }
