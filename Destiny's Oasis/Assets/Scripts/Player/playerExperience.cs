@@ -75,7 +75,7 @@ public class playerExperience : MonoBehaviour
 
     public void Cooldown()
     {
-        gameObject.GetComponent<Player_Controls>().TimeStunned -= gameObject.GetComponent<Player_Controls>().TimeStunned * 0.9f;
+        gameObject.GetComponent<Player_Controls>().TimeStunned -= gameObject.GetComponent<Player_Controls>().TimeStunned * 0.1f;
 
         levelUpScreen.SetActive(false);
         Time.timeScale = 1f;
