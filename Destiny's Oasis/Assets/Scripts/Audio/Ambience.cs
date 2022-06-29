@@ -1,11 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Ambience: MonoBehaviour
 {
     public AudioClip[] soundtrack;
+    public Slider volume;
 
-    // Use this for initialization
     void Start()
     {
         if (!GetComponent<AudioSource>().playOnAwake)
@@ -15,7 +16,6 @@ public class Ambience: MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!GetComponent<AudioSource>().isPlaying)
