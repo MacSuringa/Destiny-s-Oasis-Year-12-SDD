@@ -31,6 +31,7 @@ public class Player_Controls : MonoBehaviour
 
     Vector2 movement;
     Vector2 mousePos;
+    Vector2 strikePos;
     // defines variables with no value
 
     void Update()
@@ -84,21 +85,27 @@ public class Player_Controls : MonoBehaviour
 
     void Attack()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(mousePos, attackRadius);
-
         if (Input.GetMouseButtonDown(0))
         {
-            foreach (Collider2D c in colliders)
-            {
-                if (c.GetComponent<enemyHealth>())
-                {
-                    c.GetComponent<enemyHealth>().TakeDamage(Damage);
-                }
-            }
+            strikePos = new Vector2(mousePos.x + 1, mousePos.y + 58);
+            Instantiate(attackAnimation, strikePos, attackAnimation.transform.rotation);
+
             isStunned = true;
             isStunnedTimer = 0f;
+        }
+    }
 
-            Instantiate(attackAnimation, new Vector3(mousePos.x + 1, mousePos.y + 14, 0), attackAnimation.transform.rotation);
+    public void Lightning()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(new Vector2(strikePos.x - 1, strikePos.y - 58), attackRadius);
+
+
+        foreach (Collider2D c in colliders)
+        {
+            if (c.GetComponent<enemyHealth>())
+            {
+                c.GetComponent<enemyHealth>().TakeDamage(Damage);
+            }
         }
     }
 }

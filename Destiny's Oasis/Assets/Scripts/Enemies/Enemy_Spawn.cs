@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
 public class Enemy_Spawn : MonoBehaviour
@@ -10,6 +11,8 @@ public class Enemy_Spawn : MonoBehaviour
     public Color[] tileColor;
 
     public Tilemap tilemap;
+    public Canvas canvas;
+    private Image image;
 
     public float interval;
     private float timer = 0f;
@@ -71,6 +74,9 @@ public class Enemy_Spawn : MonoBehaviour
             if (!colorChange)
             {
                 eventType = Random.Range(0, tileColor.Length);
+
+                changeColor(0.8f);
+
                 tilemap.color = tileColor[eventType];
 
                 colorChange = true;
@@ -90,6 +96,8 @@ public class Enemy_Spawn : MonoBehaviour
                 specialCountDown = 0;
 
                 tilemap.color = Color.white;
+
+                changeColor(0);
             }
 
             eventSpawnCooldown += Time.deltaTime;
@@ -106,6 +114,14 @@ public class Enemy_Spawn : MonoBehaviour
 
             }
         }
+    }
+
+    private void changeColor(float value)
+    {
+        image = canvas.GetComponent<Image>();
+        var tempColor = image.color;
+        tempColor.a = value;
+        image.color = tempColor;
     }
 
     private void spawnSystem(int enemy)
