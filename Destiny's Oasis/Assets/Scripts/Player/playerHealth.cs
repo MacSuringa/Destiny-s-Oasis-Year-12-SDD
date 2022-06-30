@@ -7,6 +7,7 @@ public class playerHealth : MonoBehaviour
 {
     public Image healthBar;
     public float healthAmount = 100;
+    public float healthAmountMax = 100;
 
     public GameObject gameOver;
 
@@ -22,16 +23,28 @@ public class playerHealth : MonoBehaviour
     public void TakeDamage(int Damage)
     {
         healthAmount -= Damage;
-        healthBar.fillAmount = healthAmount / 100;
+        //reduces the health points by the damage take
+
+        healthBar.fillAmount = healthAmount / healthAmountMax;
+        //adjusts how full the healthbar is based on a percentage
     }
 
     // class to simulate healing, to be called in levelling
     public void Healing()
     {
-        float healPoints = healthAmount * 0.1f;
-        healthAmount += healPoints;
-        healthAmount = Mathf.Clamp(healthAmount, 0, 100);
+        if (healthAmount < healthAmountMax * 0.25)
+        {
+            float healPoints = healthAmountMax * 0.25f;
+            healthAmount += healPoints;
 
-        healthBar.fillAmount = healthAmount / 100;
+
+            healthBar.fillAmount = healthAmount / healthAmountMax;
+        }
+
+        else
+        {
+            healthAmount = healthAmountMax;
+            healthBar.fillAmount = 1;
+        }
     }
 }

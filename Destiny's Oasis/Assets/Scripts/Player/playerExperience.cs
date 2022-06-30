@@ -34,11 +34,6 @@ public class playerExperience : MonoBehaviour
         experienceBar.fillAmount = Experience / levelUpThreshold;
         attackAnimation.GetComponent<SpriteRenderer>().color = attackColor;
         gameObject.GetComponent<SpriteRenderer>().color = playerColor;
-
-        if (Input.GetKey("e"))
-        {
-            levelUp();
-        }
     }
 
     public void gainXP(float enemyXP)
@@ -62,6 +57,7 @@ public class playerExperience : MonoBehaviour
     public void Health()
     {
         gameObject.GetComponent<playerHealth>().healthAmount += 25;
+        gameObject.GetComponent<playerHealth>().healthAmountMax += 25;
 
         levelUpScreen.SetActive(false);
         Time.timeScale = 1f;
@@ -101,7 +97,7 @@ public class playerExperience : MonoBehaviour
 
     public void Cooldown()
     {
-        gameObject.GetComponent<Player_Controls>().TimeStunned -= gameObject.GetComponent<Player_Controls>().TimeStunned * 0.1f;
+        gameObject.GetComponent<Player_Controls>().TimeStunned *= 0.9f;
 
         levelUpScreen.SetActive(false);
         Time.timeScale = 1f;
