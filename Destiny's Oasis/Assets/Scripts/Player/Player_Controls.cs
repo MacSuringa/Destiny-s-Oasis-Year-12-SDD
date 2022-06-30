@@ -62,15 +62,6 @@ public class Player_Controls : MonoBehaviour
 
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
         // moves the player body based on the movement type, speed and time
-
-        Vector2 lookDirect = mousePos - rb.position;
-        // sets a variable to find the x and y axis value for where the player needs to face
-
-        float angle = Mathf.Atan2(lookDirect.y, lookDirect.x) * Mathf.Rad2Deg - 90f;
-        // gets the angle in radians for the player to face
-
-        rb.rotation = angle;
-        // rotates the player body based on said angle
     }
 
     void UpdateTimer()

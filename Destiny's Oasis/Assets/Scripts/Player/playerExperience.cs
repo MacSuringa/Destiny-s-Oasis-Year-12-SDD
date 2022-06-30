@@ -16,7 +16,7 @@ public class playerExperience : MonoBehaviour
     public GameObject attackAnimation;
     private Color attackColor = Color.cyan;
 
-    private Color playerColor = Color.blue;
+    private Color playerColor = Color.white;
 
     private void Start()
     {
