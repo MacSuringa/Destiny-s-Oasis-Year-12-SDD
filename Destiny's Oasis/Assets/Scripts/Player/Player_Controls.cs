@@ -25,7 +25,9 @@ public class Player_Controls : MonoBehaviour
 
     private float isStunnedTimer = 0f;
 
-    public float attackRadius = 25f;
+    public float attackRadius = 24f;
+
+    public GameObject attackAnimation;
 
     Vector2 movement;
     Vector2 mousePos;
@@ -95,6 +97,8 @@ public class Player_Controls : MonoBehaviour
             }
             isStunned = true;
             isStunnedTimer = 0f;
+
+            Instantiate(attackAnimation, new Vector3(mousePos.x + 1, mousePos.y + 14, 0), attackAnimation.transform.rotation);
         }
     }
 }

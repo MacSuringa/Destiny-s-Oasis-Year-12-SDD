@@ -13,6 +13,14 @@ public class playerExperience : MonoBehaviour
 
     public GameObject levelUpScreen;
 
+    public GameObject attackAnimation;
+    private Color attackColor = Color.cyan;
+
+    private void Start()
+    {
+            Color attackColor = attackAnimation.GetComponent<SpriteRenderer>().color;
+    }
+
     private void Update()
     {
         if (Experience >= levelUpThreshold)
@@ -21,6 +29,7 @@ public class playerExperience : MonoBehaviour
         }
 
         experienceBar.fillAmount = Experience / levelUpThreshold;
+        attackAnimation.GetComponent<SpriteRenderer>().color = attackColor;
     }
 
     public void gainXP(float enemyXP)
@@ -63,6 +72,8 @@ public class playerExperience : MonoBehaviour
 
         levelUpScreen.SetActive(false);
         Time.timeScale = 1f;
+
+        attackColor = (attackColor + Color.red) / 2;
     }
 
     public void Radius()
@@ -71,6 +82,8 @@ public class playerExperience : MonoBehaviour
 
         levelUpScreen.SetActive(false);
         Time.timeScale = 1f;
+
+       attackColor = (attackColor + Color.blue) / 2;
     }
 
     public void Cooldown()
@@ -79,6 +92,8 @@ public class playerExperience : MonoBehaviour
 
         levelUpScreen.SetActive(false);
         Time.timeScale = 1f;
+
+        attackColor = (attackColor + Color.green) / 2;
     }
 
 }
