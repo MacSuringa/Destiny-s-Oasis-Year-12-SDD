@@ -8,12 +8,12 @@ public class scoreHandler : MonoBehaviour
     public float timeAmount;
     public int playerLevel;
 
-    private TMP_Text scoreText;
+    private Text scoreText;
 
     // Start is called before the first frame update
     void Start()
     {
-        scoreText = GetComponent<TMP_Text>();
+        scoreText = GetComponent<Text>();
         killAmount = 0;
         playerLevel = GameObject.FindGameObjectWithTag("Player").GetComponent<playerExperience>().playerLevel;
     }

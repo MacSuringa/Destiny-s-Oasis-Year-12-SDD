@@ -15,6 +15,7 @@ public class playerHealth : MonoBehaviour
     {
         if (healthAmount <= 0)
         {
+            Time.timeScale = 0f;
             gameOver.SetActive(true);
         }
     }
