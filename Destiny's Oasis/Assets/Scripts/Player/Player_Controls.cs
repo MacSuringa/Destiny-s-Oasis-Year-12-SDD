@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Controls : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class Player_Controls : MonoBehaviour
     public float attackRadius = 24f;
 
     public GameObject attackAnimation;
+
+    public Image cooldownBar;
 
     Vector2 movement;
     Vector2 mousePos;
@@ -66,23 +69,32 @@ public class Player_Controls : MonoBehaviour
 
     void UpdateTimer()
     {
-        // removes part of the stun duration each frame until the variable is false again
-        isStunnedTimer += Time.deltaTime;
-        if (isStunnedTimer >= TimeStunned)
+        if (isStunned == true)
         {
-            isStunned = false;
+            // removes part of the stun duration each frame until the variable is false again
+            isStunnedTimer += Time.deltaTime;
+            if (isStunnedTimer >= TimeStunned)
+            {
+                isStunned = false;
+            }
+
+            cooldownBar.fillAmount = isStunnedTimer / TimeStunned;
         }
+
     }
 
     void Attack()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Time.timeScale == 1f)
         {
-            strikePos = new Vector2(mousePos.x + 1, mousePos.y + 58);
-            Instantiate(attackAnimation, strikePos, attackAnimation.transform.rotation);
+            if (Input.GetMouseButtonDown(0))
+            {
+                strikePos = new Vector2(mousePos.x + 1, mousePos.y + 58);
+                Instantiate(attackAnimation, strikePos, attackAnimation.transform.rotation);
 
-            isStunned = true;
-            isStunnedTimer = 0f;
+                isStunned = true;
+                isStunnedTimer = 0f;
+            }
         }
     }
 
