@@ -6,6 +6,7 @@ public class scoreHandler : MonoBehaviour
 {
     public static int killAmount;
     public float timeAmount;
+    public float timeAmountM;
     public int playerLevel;
 
     private Text scoreText;
@@ -22,9 +23,12 @@ public class scoreHandler : MonoBehaviour
     void Update()
     {
         timeAmount = Time.timeSinceLevelLoad;
+        timeAmountM = Mathf.FloorToInt(timeAmount / 60);
+        timeAmount = timeAmount % 60;
+
         playerLevel = GameObject.FindGameObjectWithTag("Player").GetComponent<playerExperience>().playerLevel;
 
-        scoreText.text = "Level = " + playerLevel + "\nKills  = " + killAmount + "\nTime Survived = " + (int)timeAmount + " Seconds";
+        scoreText.text = "Level = " + playerLevel + "\nKills  = " + killAmount + "\nTime Survived = " + (int)timeAmountM + ":" + (int)timeAmount;
     }
 
     public static void killCounter()
