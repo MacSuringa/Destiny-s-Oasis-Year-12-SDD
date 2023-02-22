@@ -6,7 +6,8 @@ public class PlayerItems : MonoBehaviour
 {
     public GameObject itemMenuUI;
 
-    public GameObject[] itemPrefabs;
+    public GameObject itemType;
+    public GameObject[] currencyPrefabs;
 
     private float timer = 0f;
     private float timeStart;
@@ -40,7 +41,6 @@ public class PlayerItems : MonoBehaviour
                 
                 if(chance <= chanceSuccess)
                 {
-                    int itemType = Random.Range(0, itemPrefabs.Length);
                     spawnSystem(itemType);
                 }
             }
@@ -54,12 +54,12 @@ public class PlayerItems : MonoBehaviour
         {
             if (collider.gameObject.tag =="Item")
             {
-                Debug.Log(collider);
+                Destroy(collider.gameObject);
             }
         }
     }
 
-    private void spawnSystem(int item)
+    private void spawnSystem(GameObject item)
     {
         float min_itemY = Camera.main.ViewportToWorldPoint(new Vector3(0, -1f, 0)).y;
         float max_itemY = Camera.main.ViewportToWorldPoint(new Vector3(0, 2f, 0)).y;
@@ -70,6 +70,6 @@ public class PlayerItems : MonoBehaviour
         float spawn_x = Random.Range(min_itemX, max_itemX);
         float spawn_y = Random.Range(min_itemY, max_itemY);
 
-        Instantiate(itemPrefabs[item], (new Vector3(spawn_x, spawn_y, 0f)), transform.rotation);
+        Instantiate(item, (new Vector3(spawn_x, spawn_y, 0f)), transform.rotation);
     }
 }
